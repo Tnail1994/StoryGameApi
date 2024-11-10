@@ -36,4 +36,16 @@ public class StoryService {
         stories.add(story);
         return true;
     }
+
+    public List<Story> getStories(Boolean isCompleted) {
+
+        if(isCompleted != null) {
+            return stories.stream()
+                    .filter(story -> story.isCompleted() == isCompleted)
+                    .toList();
+        }
+
+        return stories.stream()
+                .toList();
+    }
 }

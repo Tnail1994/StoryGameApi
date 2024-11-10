@@ -25,11 +25,24 @@ Simplifications:
 - #1: Saving the domain models in memory
 - #2: Unit-Testing only a small fraction
 
-When the user sends a `CreateStoryRequest`, it is checked in the `StoryService` and if the check is positive, a domain model is created and saved. Tested with postman post request. Configure request as JSON format. And as request body example:
+When the user sends a `CreateStoryRequest`, it is checked in the `StoryService` and if the check is positive, a domain model is created and saved. Tested with postman post request at `localhost:8080/api/stories`. Configure request as JSON format. And as request body example:
 ```json
 {
-    "title": "A chess random story",
+    "title": "A random chess story",
     "topic": "Chess",
     "amountOfSentences": 5
 }
 ``` 
+
+### Story #2: Make it possible to get all ongoing and completed stories
+
+I want to provide an API get method with an optional query param isCompleted. Depending on the param, the query will return all running or completed story titles. The user should then be able to request specific information about the story by providing the title of the story as a query param.  
+
+- Create new get method for `StoryController` to get ongoing, completed or all stories.
+- Extend `StoryService` to get ongoing, completed or all stories
+- Also added new get method for `StoryController` to get information about a story. User must provide an existing story title
+- Create new response model `GetStoryInfoResponse`
+
+
+Simplifications:
+- #3: No unit testing
