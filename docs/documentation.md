@@ -72,3 +72,25 @@ Apis:
 For the backend side, no further action is required at this time, as Stories #4 and #5 are only needed for the interface. I started writing the user stories on the backend side, as the interface itself can be implemented abstractly. In the first commit I already added the cors configuration needed for the angular application on localhost.
 
 All commits are tagged by user story number. Normally, I would not commit and push them directly into main, but keep them in a separate branch and merge them into the production branch after the task has been completed (e.g. with a final review). 
+
+## Implementing the Web App
+
+As I have already completed the backend side and worked my way through the user stories, the initial project structure can be implemented smoothly.
+
+- Adding Bootstrap to the index.html file
+- A main menu is required. This means that the home component is defined as the main menu, which navigates to other components.
+- All necessary components already created
+- Navigation from main menu to create new story and story listen wired together
+- Added environment files, because the interface to be addressed does not change. Here is a simplification #5
+
+
+Simplifications:
+- #5: Using an unsecure connection `http://localhost:8080`
+
+### Story #1: As a player, I want to create a new story
+
+The project setup has already created a main menu that allows you to navigate to different pages. So only the New Story component had to be adapted. The following has been added or changed in this user story
+
+- Added the http provider to the app config
+- created a story service that calls the create new story api from the backend
+- The Create New Story UI component is created as a form and can only be submitted if all the required fields have been filled in correctly.
