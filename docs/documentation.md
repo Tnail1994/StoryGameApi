@@ -128,7 +128,10 @@ This user story has a large changeset coming up, which should be well thought ou
 - only authorised users can view and contribute to stories
 - create a relationship between users and added sentences to stories by extend the sentences property of `Story`
 - as soon as a user would enter sensitive data (e.g. email, password), the unencrypted approach should also be reconsidered
-
+- a login page must be implemented
+- The authorisation token that comes from the login response needs to be stored.
+- Find an approach to storing data, such as local storage.
+- prevent unauthorised users from accessing story pages, e.g. as interceptors
 
 ### Story #7: As a player, I want to view all games I contributed a sentence
 
