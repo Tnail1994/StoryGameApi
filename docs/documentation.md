@@ -66,3 +66,9 @@ Simplifications:
 
 Apis:
 - `localhost:8080/api/stories/new-sentence-{title}?sentence={sentence}`
+
+### Concluding words
+
+For the backend side, no further action is required at this time, as Stories #4 and #5 are only needed for the interface. I started writing the user stories on the backend side, as the interface itself can be implemented abstractly. In the first commit I already added the cors configuration needed for the angular application on localhost.
+
+All commits are tagged by user story number. Normally, I would not commit and push them directly into main, but keep them in a separate branch and merge them into the production branch after the task has been completed (e.g. with a final review). 
