@@ -118,3 +118,19 @@ User Story #5 has already been completed by Story #2 and can be navigated from t
 Overall, this project is kept simple, but still scalable. Layers were deliberately omitted, as explained in the overview. However, the Springboot web framework allows new API controllers to be implemented quickly. It can also be further scaled by adding additional services and domains. DI (Dependency Injection) makes it easy to access additional domains and their services, which can open up new possibilities. At some point, of course, a limit is reached. You could imagine many domains performing heavy computing operations on each other while many users make requests. Here you would need to scale up and possibly set up some sort of cluster between the systems, which could then be synchronised by a dedicated database and accessed via a message queue. In short. 
 
 I chose the Bootstrap framework for Angular because it allows me to quickly and easily create modern and clean element layouts using Bootstrap CSS classes. Furthermore, the Angular framework and other plugins offer many possibilities to further scale and customise the website.
+
+## What could happen next? Coming user stories
+
+### Story #6: As a player, I cannot add a sentence if the last sentence has already been set by me
+This user story has a large changeset coming up, which should be well thought out. In this task, you need to think about how to track contributions. This is followed by many smaller subtasks such as
+- add a new domain `User`
+- add identification (which could be simple at first, like logging in with just the usernames)
+- only authorised users can view and contribute to stories
+- create a relationship between users and added sentences to stories by extend the sentences property of `Story`
+- as soon as a user would enter sensitive data (e.g. email, password), the unencrypted approach should also be reconsidered
+
+
+### Story #7: As a player, I want to view all games I contributed a sentence
+
+### Story #8: As a player, I want to be notified, when a story is finished
+
