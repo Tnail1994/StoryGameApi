@@ -113,3 +113,8 @@ Also a simple extension of the web page. Show the topic element on the page if i
 ### Story #4 and #5: Words to the other stories
 These stories are already finished. Story #4 is finished because the `StoryDetailsComponent` and `Story` are already abstract. The elements are therefore displayed according to the parameters. In this case the story is already finished because `Story` has a `textToShow` property. This is already assembled correctly in the backend and shows either the last added sentence or the complete text. Here it is the complete text that is transmitted.
 User Story #5 has already been completed by Story #2 and can be navigated from the `HomeComponent`, which is the main menu.
+
+## To summarise
+Overall, this project is kept simple, but still scalable. Layers were deliberately omitted, as explained in the overview. However, the Springboot web framework allows new API controllers to be implemented quickly. It can also be further scaled by adding additional services and domains. DI (Dependency Injection) makes it easy to access additional domains and their services, which can open up new possibilities. At some point, of course, a limit is reached. You could imagine many domains performing heavy computing operations on each other while many users make requests. Here you would need to scale up and possibly set up some sort of cluster between the systems, which could then be synchronised by a dedicated database and accessed via a message queue. In short. 
+
+I chose the Bootstrap framework for Angular because it allows me to quickly and easily create modern and clean element layouts using Bootstrap CSS classes. Furthermore, the Angular framework and other plugins offer many possibilities to further scale and customise the website.
