@@ -46,3 +46,23 @@ I want to provide an API get method with an optional query param isCompleted. De
 
 Simplifications:
 - #3: No unit testing
+
+Apis:
+- `localhost:8080/api/stories`
+- `localhost:8080/api/stories?isCompleted=false`
+- `localhost:8080\api\stories\A chess random story`
+
+### Story #3: Make it possible to update ongoing stories via adding sentence to it
+
+I want to provide an API put method to update an existing ongoing story. The user send with title as path variable and the sentence to add as request param (Simplification #4).
+
+- Create new put method for `StoryController` to add a sentence to a ongoing story. The same method gives back the an new info about the story
+- Refactor: Renamed `GetStoryInfoResponse` -> `StoryInfoResponse`, because 'add sentence' method gives back the same object
+- Added new fuctionality to `StoryService` to add a sentence to the story
+
+
+Simplifications:
+- #4: Better would be request body to scale it later on
+
+Apis:
+- `localhost:8080/api/stories/new-sentence-{title}?sentence={sentence}`

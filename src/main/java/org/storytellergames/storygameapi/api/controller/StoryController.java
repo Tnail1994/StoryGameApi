@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.storytellergames.storygameapi.api.model.domain.Story;
 import org.storytellergames.storygameapi.api.model.request.CreateStoryRequest;
-import org.storytellergames.storygameapi.api.model.response.GetStoryInfoResponse;
+import org.storytellergames.storygameapi.api.model.response.StoryInfoResponse;
 import org.storytellergames.storygameapi.api.service.StoryService;
 
 import java.util.List;
@@ -43,7 +43,6 @@ public class StoryController {
         }
     }
 
-
     @GetMapping
     public ResponseEntity<List<String>> getStories(
             @RequestParam(required = false) Boolean isCompleted) {
@@ -54,7 +53,7 @@ public class StoryController {
     }
 
     @GetMapping("/{title}")
-    public ResponseEntity<GetStoryInfoResponse> getStoryInfo(@PathVariable String title) {
+    public ResponseEntity<StoryInfoResponse> getStoryInfo(@PathVariable String title) {
         Optional<Story> storyOptional = storyService.getStory(title);
 
         if(storyOptional.isEmpty()){
@@ -63,7 +62,28 @@ public class StoryController {
 
         Story story = storyOptional.get();
 
-        GetStoryInfoResponse infoDto = new GetStoryInfoResponse(story.getTitle(), story.getTopic(), "", story.isCompleted());
+        StoryInfoResponse infoDto = createGetStoryInfoResponse(story);
+        return new ResponseEntity<>(infoDto, HttpStatus.OK);
+    }
+
+    private static StoryInfoResponse createGetStoryInfoResponse(Story story) {
+
+        String[] sentences = story.getSentences();
+
+        if(story.isCompleted()){
+            return new StoryInfoResponse(story.getTitle(), story.getTopic(), String.join(" ", sentences), true);
+        }
+        else if(sentences != null && sentences.length > 0) {
+            return new StoryInfoResponse(story.getTitle(), story.getTopic(), sentences[sentences.length-1], false);
+        }
+
+        return new StoryInfoResponse(story.getTitle(), story.getTopic(), "", story.isCompleted());
+    }
+
+    @PutMapping("/new-sentence-{title}")
+    public ResponseEntity<StoryInfoResponse> addSentence(@PathVariable String title, @RequestParam String sentence) {
+        Story updatedStory = storyService.addSentence(title, sentence);
+        StoryInfoResponse infoDto = createGetStoryInfoResponse(updatedStory);
         return new ResponseEntity<>(infoDto, HttpStatus.OK);
     }
 }

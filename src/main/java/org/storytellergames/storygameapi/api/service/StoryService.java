@@ -48,4 +48,16 @@ public class StoryService {
         return stories.stream()
                 .toList();
     }
+
+    public Story addSentence(String title, String sentence) {
+        Optional<Story> storyOptional = getStory(title);
+
+        if (storyOptional.isEmpty()) {
+            return null;
+        }
+
+        Story story = storyOptional.get();
+        story.addSentence(sentence);
+        return story;
+    }
 }
