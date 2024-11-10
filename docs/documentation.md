@@ -78,9 +78,9 @@ All commits are tagged by user story number. Normally, I would not commit and pu
 As I have already completed the backend side and worked my way through the user stories, the initial project structure can be implemented smoothly.
 
 - Adding Bootstrap to the index.html file
-- A main menu is required. This means that the home component is defined as the main menu, which navigates to other components.
-- All necessary components already created
-- Navigation from main menu to create new story and story listen wired together
+- A `HomeComponent` is required. This means that the home component is defined as the `HomeComponent`, which navigates to other components.
+- All necessary components  `Home`, `StoryList`, `StoryDetails` and `CreateStoryComponent` already created
+- Navigation from `HomeComponent` to create new story and story listen wired together
 - Added environment files, because the interface to be addressed does not change. Here is a simplification #5
 
 
@@ -89,15 +89,23 @@ Simplifications:
 
 ### Story #1: As a player, I want to create a new story
 
-The project setup has already created a main menu that allows you to navigate to different pages. So only the New Story component had to be adapted. The following has been added or changed in this user story
+The project setup has already created a `HomeComponent` that allows you to navigate to different pages. So only the New Story component had to be adapted. The following has been added or changed in this user story
 
 - Added the http provider to the app config
-- created a story service that calls the create new story api from the backend
+- created a `StoryService` that calls the create new story api from the backend
 - The Create New Story UI component is created as a form and can only be submitted if all the required fields have been filled in correctly.
 
 ### Story #2: As a player, I want to see all ongoing and completed stories
 This task is quick and easy to complete as only the stories are queried and can be displayed as list buttons.
 
-- Fill story list component
-- Extend story service to get all stories with completed query param
-- Navigate to story details component
+- Fill `StoryListComponent`
+- Extend `StoryService` to get all stories with completed query param
+- Navigate to `StoryDetailsComponent`
+
+
+### Story #3: As a player, I want to add a sentence to the story
+Also a simple extension of the web page. Show the topic element on the page if it is set and the input field element only when the story is not completed yet.
+
+- Added `Story` model to features
+- Extend `StoryService` to send put request to add sentence to story
+- Filled `StoryDetailsComponent` 
