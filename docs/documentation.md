@@ -109,3 +109,7 @@ Also a simple extension of the web page. Show the topic element on the page if i
 - Added `Story` model to features
 - Extend `StoryService` to send put request to add sentence to story
 - Filled `StoryDetailsComponent` 
+
+### Story #4 and #5: Words to the other stories
+These stories are already finished. Story #4 is finished because the `StoryDetailsComponent` and `Story` are already abstract. The elements are therefore displayed according to the parameters. In this case the story is already finished because `Story` has a `textToShow` property. This is already assembled correctly in the backend and shows either the last added sentence or the complete text. Here it is the complete text that is transmitted.
+User Story #5 has already been completed by Story #2 and can be navigated from the `HomeComponent`, which is the main menu.
