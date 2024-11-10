@@ -94,3 +94,10 @@ The project setup has already created a main menu that allows you to navigate to
 - Added the http provider to the app config
 - created a story service that calls the create new story api from the backend
 - The Create New Story UI component is created as a form and can only be submitted if all the required fields have been filled in correctly.
+
+### Story #2: As a player, I want to see all ongoing and completed stories
+This task is quick and easy to complete as only the stories are queried and can be displayed as list buttons.
+
+- Fill story list component
+- Extend story service to get all stories with completed query param
+- Navigate to story details component
