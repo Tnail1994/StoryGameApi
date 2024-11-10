@@ -22,7 +22,7 @@ public class StoryInfoResponse {
     public String getTextToShow() {
         return textToShow;
     }
-    public Boolean getCompleted() {
+    public Boolean getIsCompleted() {
         return isCompleted;
     }
 }

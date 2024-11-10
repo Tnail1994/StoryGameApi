@@ -81,7 +81,7 @@ public class StoryController {
     }
 
     @PutMapping("/new-sentence-{title}")
-    public ResponseEntity<StoryInfoResponse> addSentence(@PathVariable String title, @RequestParam String sentence) {
+    public ResponseEntity<StoryInfoResponse> addSentence(@PathVariable String title, @RequestBody String sentence) {
         Story updatedStory = storyService.addSentence(title, sentence);
         StoryInfoResponse infoDto = createGetStoryInfoResponse(updatedStory);
         return new ResponseEntity<>(infoDto, HttpStatus.OK);
