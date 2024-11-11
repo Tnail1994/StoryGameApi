@@ -1,13 +1,25 @@
 # My steps documented
 This document is intended to summarize the steps I took to complete the task. 
 
-## Overview the task
+## Overview the tasks
 First, I read through all the user stories carefully. Then I got my ideas down on paper, transferred these to draw.io and expanded them.
 
 In the overview (picture below) you can see:
 
+A division between backend and frontend. For the frontend the web framework Angular is used. All necessary web pages are displayed and related in this section. Furthermore, a rough overview of the communication with the backend is given here. The graphic shows that the web page component addresses the api. This is the simplified view. Normally there would be an ApiService layer in between, which addresses the API. On the other side is the backend with the Springboot framework. Simplified, you can see a UML diagram that should reflect the rough class relationships. It should be noted that the diagram itself shows a strong simplification. The simplification is explained and the "better" way is shown. Overall, the “block” for the backend can be seen as a domain.
+
 ![Short overview of the taks and fist thoughts](imgs/ShortOverview.drawio.png "Short overview")
 
+### "Reaching into the future"
+*This section is added at the end. I'll note here why I usually get an overview before I start working on real code.*
+
+Creating an overview gave me the following benefits during development:
+- The first point is obvious: it gave me an overview. What roughly needs to exist to answer / solve the question / problem.
+- Initial and further thoughts are recorded, so there is no need to rethink the task and basic structure if necessary.
+- A rough basic structure: Because I had an overview, I was able to divide larger tasks into several smaller ones.
+- Implementation is faster because there is a common thread, tasks can be worked through one after the other
+
+Of course, it takes small amount of time, but I think it's always a good investment for the future, because it saves a lot of time for later projects.
 ## Implementing the API
 
 ### Story #1: Make it possible to create a story on backend side
@@ -133,7 +145,18 @@ This user story has a large changeset coming up, which should be well thought ou
 - Find an approach to storing data, such as local storage.
 - prevent unauthorised users from accessing story pages, e.g. as interceptors
 
-### Story #7: As a player, I want to view all games I contributed a sentence
+### Story #7: As a player, I want to see all the games in which I have contributed a sentence
 
-### Story #8: As a player, I want to be notified, when a story is finished
+Depending on if user story #6 is implemented, then the relationship between users and added sentences to stories is already added. The further tasks would be to extend the `StoryController` to return this data via get method. 
 
+### Story #8: As a player, I would like to be notified when a story is completed
+
+This story creates entirely new tasks. Things like:
+- Give the user the ability to mark up / subscribe to any story he wants
+- Then there should be a user and auth handling like in story #6
+- Create a relationship between the user and these marked stories
+- Extend `StoryService` to return the marked stories to the user via a get method
+
+It is possible to create other tasks here. One that still needs to be mentioned is the actual notification. How (email, push, etc.) does the user want to be notified? The Observer pattern could answer this question from an architectural point of view.
+
+## Conclusion
