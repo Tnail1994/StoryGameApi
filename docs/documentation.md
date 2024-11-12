@@ -1,7 +1,7 @@
 # My steps documented
 This document is intended to summarize the steps I took to complete the task. 
 
-## Overview the tasks
+## Overview / sketch the tasks
 First, I read through all the user stories carefully. Then I got my ideas down on paper, transferred these to draw.io and expanded them.
 
 In the overview (picture below) you can see:
@@ -62,19 +62,16 @@ Simplifications:
 Apis:
 - `localhost:8080/api/stories`
 - `localhost:8080/api/stories?isCompleted=false`
-- `localhost:8080\api\stories\A chess random story`
+- `localhost:8080\api\stories\A random chess story`
 
 ### Story #3: Make it possible to update ongoing stories via adding sentence to it
 
-I want to provide an API put method to update an existing ongoing story. The user send with title as path variable and the sentence to add as request param (Simplification #4).
+I want to provide an API put method to update an existing ongoing story. The user send with title as path variable and the sentence to add as request body
 
 - Create new put method for `StoryController` to add a sentence to a ongoing story. The same method gives back the an new info about the story
 - Refactor: Renamed `GetStoryInfoResponse` -> `StoryInfoResponse`, because 'add sentence' method gives back the same object
-- Added new fuctionality to `StoryService` to add a sentence to the story
+- Add new fuctionality to `StoryService` to add a sentence to the story
 
-
-Simplifications:
-- #4: Better would be request body to scale it later on
 
 Apis:
 - `localhost:8080/api/stories/new-sentence-{title}?sentence={sentence}`
@@ -90,22 +87,22 @@ All commits are tagged by user story number. Normally, I would not commit and pu
 As I have already completed the backend side and worked my way through the user stories, the initial project structure can be implemented smoothly.
 
 - Adding Bootstrap to the index.html file
-- A `HomeComponent` is required. This means that the home component is defined as the `HomeComponent`, which navigates to other components.
+- A main menu is required. This means that the home component is defined as the `HomeComponent`, which navigates to other components.
 - All necessary components  `Home`, `StoryList`, `StoryDetails` and `CreateStoryComponent` already created
 - Navigation from `HomeComponent` to create new story and story listen wired together
-- Added environment files, because the interface to be addressed does not change. Here is a simplification #5
+- Add environment files, because the interface to be addressed does not change. Here is a simplification #4
 
 
 Simplifications:
-- #5: Using an unsecure connection `http://localhost:8080`
+- #4: Using an unsecure connection `http://localhost:8080`
 
 ### Story #1: As a player, I want to create a new story
 
 The project setup has already created a `HomeComponent` that allows you to navigate to different pages. So only the New Story component had to be adapted. The following has been added or changed in this user story
 
-- Added the http provider to the app config
-- created a `StoryService` that calls the create new story api from the backend
-- The Create New Story UI component is created as a form and can only be submitted if all the required fields have been filled in correctly.
+- Add the http provider to the app config
+- create a `StoryService` that calls the create new story api from the backend
+- The Create New Story UI component is a form and can only be submitted if all the required fields have been filled in correctly.
 
 ### Story #2: As a player, I want to see all ongoing and completed stories
 This task is quick and easy to complete as only the stories are queried and can be displayed as list buttons.
@@ -118,9 +115,9 @@ This task is quick and easy to complete as only the stories are queried and can 
 ### Story #3: As a player, I want to add a sentence to the story
 Also a simple extension of the web page. Show the topic element on the page if it is set and the input field element only when the story is not completed yet.
 
-- Added `Story` model to features
+- Add `Story` model to features
 - Extend `StoryService` to send put request to add sentence to story
-- Filled `StoryDetailsComponent` 
+- Fill `StoryDetailsComponent` 
 
 ### Story #4 and #5: Words to the other stories
 These stories are already finished. Story #4 is finished because the `StoryDetailsComponent` and `Story` are already abstract. The elements are therefore displayed according to the parameters. In this case the story is already finished because `Story` has a `textToShow` property. This is already assembled correctly in the backend and shows either the last added sentence or the complete text. Here it is the complete text that is transmitted.
@@ -131,10 +128,11 @@ Overall, this project is kept simple, but still scalable. Layers were deliberate
 
 I chose the Bootstrap framework for Angular because it allows me to quickly and easily create modern and clean element layouts using Bootstrap CSS classes. Furthermore, the Angular framework and other plugins offer many possibilities to further scale and customise the website.
 
-## What could happen next? Coming user stories
+## What could happen next? Coming user features
 
-### Story #6: As a player, I cannot add a sentence if the last sentence has already been set by me
-This user story has a large changeset coming up, which should be well thought out. In this task, you need to think about how to track contributions. This is followed by many smaller subtasks such as
+In this chapter I will give some examples of how the project could be extended. For one example, I will go into a bit more detail. I will skip the other examples.
+### New Feature #1: Adding rules to the game e.g. only one sentence in a row
+This feature has a large changeset coming up, which should be well thought out. In this task, you need to think about how to track contributions. This is followed by many smaller subtasks such as
 - add a new domain `User`
 - add identification (which could be simple at first, like logging in with just the usernames)
 - only authorised users can view and contribute to stories
@@ -145,18 +143,40 @@ This user story has a large changeset coming up, which should be well thought ou
 - Find an approach to storing data, such as local storage.
 - prevent unauthorised users from accessing story pages, e.g. as interceptors
 
-### Story #7: As a player, I want to see all the games in which I have contributed a sentence
+Following user stories could be created:
 
-Depending on if user story #6 is implemented, then the relationship between users and added sentences to stories is already added. The further tasks would be to extend the `StoryController` to return this data via get method. 
+**#1 As a player, I cannot add a sentence if the last sentence has already been set by me**
 
-### Story #8: As a player, I would like to be notified when a story is completed
+Criteria:
 
-This story creates entirely new tasks. Things like:
+- The system should prevent a player from adding a sentence if the last sentence in the story has already been added by that player.
+- The system should provide a clear indication to the player that they cannot add a sentence.
+
+**#2 As a player, I want to be able to log in to the system**
+
+Criteria: 
+
+- The system should have a login page where users can enter their username and password.
+- The system should authenticate the user and provide an authorization token.
+- The authorization token should be stored, such as in local storage.
+
+**#3 As an authorized player, I want to be able to view and contribute to stories**
+
+**#4 As a player, I want my contributions to be associated with my account**
+
+Not all resulting user stories are mentioned here. There will be other upcoming tasks as mentioned above, such as Tls and some security aspects. 
+
+### New Feature #2: As a player, I want to see all the games in which I have contributed a sentence
+
+Depending on if new feature #1 is implemented, then the relationship between users and added sentences to stories is already added. The further tasks would be to extend the `StoryController` to return this data via get method. 
+
+### New Feature #3: As a player, I would like to be notified when a story is completed
+
+This features creates entirely new tasks. Things like:
 - Give the user the ability to mark up / subscribe to any story he wants
 - Then there should be a user and auth handling like in story #6
 - Create a relationship between the user and these marked stories
 - Extend `StoryService` to return the marked stories to the user via a get method
+- Maybe rethink or abstract the `Story` into a general `Item`.
 
 It is possible to create other tasks here. One that still needs to be mentioned is the actual notification. How (email, push, etc.) does the user want to be notified? The Observer pattern could answer this question from an architectural point of view.
-
-## Conclusion
